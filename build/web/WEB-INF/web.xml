@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <listener>
+        <listener-class>
+            com.irfan.listener.MyDbListenerClass1
+        </listener-class>
+    </listener>
+    <context-param>
+        <param-name>driverclass</param-name>
+        <param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>dsn</param-name>
+        <param-value>jdbc:odbc:mydsn</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbuser</param-name>
+        <param-value>system</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>dbpass</param-name>
+        <param-value>khan</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>LoginServlet1</servlet-name>
+        <servlet-class>com.irfan.listener.LoginServlet1</servlet-class>
+        <init-param>
+            <param-name>qry</param-name>
+            <param-value>Select * from reg_users where userid=? and userpwd=?</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationServlet1</servlet-name>
+        <servlet-class>com.irfan.listener.RegistrationServlet1</servlet-class>
+        <init-param>
+            <param-name>qry</param-name>
+            <param-value>Insert into reg_users values(?,?,?,?)</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LoginServlet1</servlet-name>
+        <url-pattern>/LoginServlet1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet1</servlet-name>
+        <url-pattern>/RegistrationServlet1</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
